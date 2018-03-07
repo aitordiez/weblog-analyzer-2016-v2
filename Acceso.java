@@ -45,4 +45,8 @@ public class Acceso
     {
         return minutos;
     }
+        public String getPaginaWebSolicitada(){
+        return paginaWebSolicitada;
+    }
+    
 }

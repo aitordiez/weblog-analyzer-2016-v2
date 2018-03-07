@@ -65,7 +65,30 @@ public class AnalizadorAccesosAServidor
     
     public String paginaWebMasSolicitada() 
     {
-        return "";
+        String nombreMasAccesos=null;
+        ArrayList<String> paginasWeb=new ArrayList<String>();
+        for(Acceso acceso : accesos){
+            paginasWeb.add(acceso.getPaginaWebSolicitada());
+        }
+        int numeroDeVecesQueSeHaRepetidoUnaPaginaWeb=0;
+        for(String accesoAPaginasWeb: paginasWeb){
+            int contadorAccesos=0;
+            for(Acceso acceso : accesos){
+                if(acceso.getPaginaWebSolicitada().equals(accesoAPaginasWeb)){
+                    contadorAccesos++;
+                }
+            }
+
+            if(contadorAccesos > numeroDeVecesQueSeHaRepetidoUnaPaginaWeb){
+                numeroDeVecesQueSeHaRepetidoUnaPaginaWeb=contadorAccesos;
+                nombreMasAccesos=accesoAPaginasWeb;
+            }
+        }
+
+        if(nombreMasAccesos==null){
+            System.out.println("Ocurrio algun error al leer el archivo.");
+        }
+        return nombreMasAccesos;   
     }
     
     public String clienteConMasAccesosExitosos()
