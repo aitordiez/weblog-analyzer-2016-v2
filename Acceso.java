@@ -46,14 +46,26 @@ public class Acceso
         return minutos;
     }
 
+    /**
+     * Getter de la paginaWebSolicitada
+     * @return devuelve un string de la paginaWebSolicitada
+     */
     public String getPaginaWebSolicitada(){
         return paginaWebSolicitada;
     }
-
+    
+    /**
+     * Getter de la direccionIp
+     * @return devuelve un string de la direccionIp
+     */
     public String getDireccionIp(){
         return ip;
     }
 
+    /**
+     * Getter del codigoDeRespuesta
+     * @return devuelve un string del codigoDeRespuesta
+     */
     public String getCodigoDeRespuesta(){
         return codigoDeRespuesta;
     }

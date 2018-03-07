@@ -61,7 +61,12 @@ public class AnalizadorAccesosAServidor
         return valorADevolver;
     }
 
-    
+    /**
+     * Devuelve el nombre de la pagina Web mas solicitada por los clientes.
+     * @return Devuelve un String que contiene el nombre de la pagina web mas 
+     * solicitada por el cliente, en caso de empate devuelve cualquiera de las
+     * paginas y si no hay datos devuelve null.
+     */
     
     public String paginaWebMasSolicitada() 
     {
@@ -91,6 +96,13 @@ public class AnalizadorAccesosAServidor
         return nombreMasAccesos;   
     }
     
+    /**
+     * Devuelve la direccion IP del cliente que ha realizado el mayor acceso 
+     * exitoso al servidor
+     * @return Devuelve un String que contiene la direccion Ip del cliente que 
+     * mas accesos ha tenido al servido, en caso de empate devuelve cualquiera 
+     * de las paginas y si no hay datos devuelve null.
+     */
     public String clienteConMasAccesosExitosos()
     {
         String direccionDelClienteConMasAccesosExitosos = null;
