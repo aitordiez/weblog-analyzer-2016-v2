@@ -65,12 +65,58 @@ public class AnalizadorAccesosAServidor
     
     public String paginaWebMasSolicitada() 
     {
-        return "";
+        String nombreMasAccesos=null;
+        ArrayList<String> paginasWeb=new ArrayList<String>();
+        for(Acceso acceso : accesos){
+            paginasWeb.add(acceso.getPaginaWebSolicitada());
+        }
+        int numeroDeVecesQueSeHaRepetidoUnaPaginaWeb=0;
+        for(String accesoAPaginasWeb: paginasWeb){
+            int contadorAccesos=0;
+            for(Acceso acceso : accesos){
+                if(acceso.getPaginaWebSolicitada().equals(accesoAPaginasWeb)){
+                    contadorAccesos++;
+                }
+            }
+
+            if(contadorAccesos > numeroDeVecesQueSeHaRepetidoUnaPaginaWeb){
+                numeroDeVecesQueSeHaRepetidoUnaPaginaWeb=contadorAccesos;
+                nombreMasAccesos=accesoAPaginasWeb;
+            }
+        }
+
+        if(nombreMasAccesos==null){
+            System.out.println("Ocurrio algun error al leer el archivo.");
+        }
+        return nombreMasAccesos;   
     }
     
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        String direccionDelClienteConMasAccesosExitosos = null;
+        int numeroDeVecesQueSeHaRepetidoLaDireccionIp=0;
+        int direccionIpMasAlta=0;
+        for(Acceso direccionesIp1 : accesos){
+            int vecesQueSeHaRepetidoLaDireccionIp=0;
+            for(Acceso direccionesIp2 : accesos){
+                if(direccionesIp1.getDireccionIp().equals(direccionesIp2.getDireccionIp()) && Integer.parseInt(direccionesIp2.getCodigoDeRespuesta().substring(0,1)) != 4){
+                    vecesQueSeHaRepetidoLaDireccionIp++;
+                }
+            }
+            String[] cuartoOcteto= direccionesIp1.getDireccionIp().split("\\.");
+            if(vecesQueSeHaRepetidoLaDireccionIp > numeroDeVecesQueSeHaRepetidoLaDireccionIp){
+                numeroDeVecesQueSeHaRepetidoLaDireccionIp=vecesQueSeHaRepetidoLaDireccionIp;
+                direccionDelClienteConMasAccesosExitosos=direccionesIp1.getDireccionIp();
+                direccionIpMasAlta=Integer.parseInt(cuartoOcteto[3]);
+            }else if(vecesQueSeHaRepetidoLaDireccionIp == numeroDeVecesQueSeHaRepetidoLaDireccionIp && direccionIpMasAlta < Integer.parseInt(cuartoOcteto[3])){
+                direccionDelClienteConMasAccesosExitosos = direccionesIp1.getDireccionIp();
+            }
+        } 
+
+        if(direccionDelClienteConMasAccesosExitosos==null){
+            System.out.println("Ocurrio algun error al leer el archivo.");
+        }
+        return direccionDelClienteConMasAccesosExitosos;
     }
 
 

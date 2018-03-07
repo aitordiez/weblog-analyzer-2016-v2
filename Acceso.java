@@ -11,14 +11,14 @@ public class Acceso
     public Acceso(String accesoADatos)
     {
         String[] datosAccesos=accesoADatos.split(" ");
-       ip=datosAccesos[0];
-       this.ano = Integer.parseInt(datosAccesos[1].substring(1,5));
-       this.mes = Integer.parseInt(datosAccesos[2]);
-       this.dia = Integer.parseInt(datosAccesos[3]);
-       this.hora = Integer.parseInt(datosAccesos[4]);
-       this.minutos = Integer.parseInt(datosAccesos[5].substring(0,2));
-       paginaWebSolicitada = datosAccesos[6];
-       this.codigoDeRespuesta = datosAccesos[7];
+        ip=datosAccesos[0];
+        this.ano = Integer.parseInt(datosAccesos[1].substring(1,5));
+        this.mes = Integer.parseInt(datosAccesos[2]);
+        this.dia = Integer.parseInt(datosAccesos[3]);
+        this.hora = Integer.parseInt(datosAccesos[4]);
+        this.minutos = Integer.parseInt(datosAccesos[5].substring(0,2));
+        paginaWebSolicitada = datosAccesos[6];
+        this.codigoDeRespuesta = datosAccesos[7];
     }
 
     public int getAno() 
@@ -44,5 +44,17 @@ public class Acceso
     public int getMinutos()
     {
         return minutos;
+    }
+
+    public String getPaginaWebSolicitada(){
+        return paginaWebSolicitada;
+    }
+
+    public String getDireccionIp(){
+        return ip;
+    }
+
+    public String getCodigoDeRespuesta(){
+        return codigoDeRespuesta;
     }
 }
