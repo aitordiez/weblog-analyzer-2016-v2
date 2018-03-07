@@ -93,7 +93,30 @@ public class AnalizadorAccesosAServidor
     
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        String direccionDelClienteConMasAccesosExitosos = null;
+        int numeroDeVecesQueSeHaRepetidoLaDireccionIp=0;
+        int direccionIpMasAlta=0;
+        for(Acceso direccionesIp1 : accesos){
+            int vecesQueSeHaRepetidoLaDireccionIp=0;
+            for(Acceso direccionesIp2 : accesos){
+                if(direccionesIp1.getDireccionIp().equals(direccionesIp2.getDireccionIp()) && Integer.parseInt(direccionesIp2.getCodigoDeRespuesta().substring(0,1)) != 4){
+                    vecesQueSeHaRepetidoLaDireccionIp++;
+                }
+            }
+            String[] cuartoOcteto= direccionesIp1.getDireccionIp().split("\\.");
+            if(vecesQueSeHaRepetidoLaDireccionIp > numeroDeVecesQueSeHaRepetidoLaDireccionIp){
+                numeroDeVecesQueSeHaRepetidoLaDireccionIp=vecesQueSeHaRepetidoLaDireccionIp;
+                direccionDelClienteConMasAccesosExitosos=direccionesIp1.getDireccionIp();
+                direccionIpMasAlta=Integer.parseInt(cuartoOcteto[3]);
+            }else if(vecesQueSeHaRepetidoLaDireccionIp == numeroDeVecesQueSeHaRepetidoLaDireccionIp && direccionIpMasAlta < Integer.parseInt(cuartoOcteto[3])){
+                direccionDelClienteConMasAccesosExitosos = direccionesIp1.getDireccionIp();
+            }
+        } 
+
+        if(direccionDelClienteConMasAccesosExitosos==null){
+            System.out.println("Ocurrio algun error al leer el archivo.");
+        }
+        return direccionDelClienteConMasAccesosExitosos;
     }
 
 
